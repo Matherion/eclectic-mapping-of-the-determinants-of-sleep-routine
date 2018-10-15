@@ -1,0 +1,47 @@
+---
+title: "Eclectic mapping of the determinants of sleep routine"
+author: Angela Custers, Paola Gobbi, Alice Mijlhoff, Marieke Mulders, Gjalt-Jorn Peters,
+  Katrien Pruydt, Audrey Rohen, Niels Westrik
+date: "`r format(Sys.time(), '%H:%M:%S on %Y-%m-%d %Z (GMT%z)')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+### Basic settings
+knitr::opts_chunk$set(echo = FALSE);
+
+### Load required packages
+require('userfriendlyscience');
+require('ufs');
+require('behaviorchange');
+require('here');
+
+### Set convenience variables with paths
+dataPath <- here::here('data');
+
+### Set convenience variables with filenames
+datafile <- "survey_746418_R_data_file.csv";
+scriptfile <- "survey_746418_R_syntax_file.R";
+
+### Specify categorical variables in LimeSurvey study
+categoricalVariables <- c("InformedConsent",
+                          "TimeUntillBedtime",
+                          "education",
+                          "partner",
+                          "children",
+                          "WorkAfterBedtime",
+                          "gender");
+
+```
+
+```{r load-data}
+
+dat <-
+  userfriendlyscience::importLimeSurveyData(datafile=file.path(dataPath,
+                                                               datafile),
+                                            scriptfile=file.path(dataPath,
+                                                                 scriptfile),
+                                            categoricalQuestions=categoricalVariables);
+
+```
